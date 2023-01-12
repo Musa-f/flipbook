@@ -2,6 +2,7 @@
 include 'livre.php';
 
 global $id;
+var_dump($id);
 
 $displayData = $_POST['mydata'];
 $progressupdate =   "UPDATE suivi 
@@ -11,7 +12,7 @@ $progressupdate =   "UPDATE suivi
                     WHERE livre.id=$id";
 $bdd->exec($progressupdate);
 
-var_dump($id);
+
 
 
 ?>
