@@ -1,0 +1,38 @@
+body{
+    background-color: gainsboro;
+}
+
+#page-num, #page-count{
+    font-weight: 600;
+    padding: 0 10px 0 10px;
+}
+
+.page-info{
+    display: flex;
+    justify-content: center;
+}
+
+.book{
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+button:active{
+    border: none;
+}
+
+canvas{
+    box-shadow: 2px 2px 6px black;
+}
+
+.centrer{
+    display: flex;
+    justify-content: center;
+}
