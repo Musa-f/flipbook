@@ -20,7 +20,6 @@ const renderPage = num => {
     pageIsRendering = true;
 
     pdfDoc.getPage(num).then(page =>{
-        //Set scale
         const viewport = page.getViewport({scale});
         canvas.height = viewport.height;
         canvas.width = viewport.width;
@@ -51,7 +50,7 @@ const renderPage = num => {
             } 
         });
         
-        //Output current page*
+        //Output current page
         //console.log(num);
         document.querySelector('#page-num').textContent = num;
         barProgress.textContent = Math.round(num/pdfDoc.numPages*100)+"%";
