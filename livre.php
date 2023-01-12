@@ -16,7 +16,6 @@ include 'bdd.php';
 <body>
 
     <a href="index.php" class="link-secondary p-2">Retour</a>
-    <p id="result"></p>
 
     <?php
         $id = $_GET['id'];
@@ -25,6 +24,7 @@ include 'bdd.php';
         $infos = $bdd->query("SELECT link FROM livre WHERE id=$id");
         $row = $infos->fetch(PDO::FETCH_ASSOC);
     ?>
+    
 
     <span class="page-info m-3">
         Page <span id="page-num"></span> sur <span id="page-count"></span>

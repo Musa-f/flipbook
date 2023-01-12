@@ -7,6 +7,8 @@ include 'bdd.php';
 const url = "livres/<?=$row['link']?>";
 let barProgress = document.querySelector('div.progress-bar');
 
+
+
 let pdfDoc = null,
     pageNum = 1,
     pageIsRendering = false,
@@ -40,13 +42,16 @@ const renderPage = num => {
         //AJAX
         /*let mydata = {number : num};
         console.log(mydata);*/
+        let id= "<?php echo $id; ?>";
+        console.log("NUMERO DE PAGE"+num);
+        console.log("ID LIVRE"+id);
+
         $.ajax({
             url: 'response.php',
             type: 'POST',
-            data: {mydata : num},
+            data: {mydata : num, id:id},
             success: function(data){ 
             $('#result').html(data);
-            console.log("ok")
             } 
         });
         
@@ -99,3 +104,16 @@ document.querySelector('#next-page').addEventListener('click', showNextPage);
 
 </script>
 
+<?php
+$currentNumQuery = $bdd->query("SELECT suivi.progress
+                    FROM suivi
+                    INNER JOIN livre
+                    ON livre.id=suivi.id_livre
+                    INNER JOIN users
+                    ON users.id=suivi.id_user
+                    WHERE livre.id=$id AND users.id=1");
+                    
+$currentNumFetch = $currentNumQuery->fetch(PDO::FETCH_ASSOC);
+$currentNum = implode("", $currentNumFetch);
+echo $currentNum;
+?>
