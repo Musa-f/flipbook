@@ -1,5 +1,4 @@
 <?php
-include "script.php";
 include 'livre.php';
 
 global $id;
