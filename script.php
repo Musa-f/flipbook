@@ -9,12 +9,25 @@ let barProgress = document.querySelector('div.progress-bar');
 
 
 
+<?php
+    $currentNumQuery = $bdd->query("SELECT suivi.progress
+                        FROM suivi
+                        INNER JOIN livre
+                        ON livre.id=suivi.id_livre
+                        INNER JOIN users
+                        ON users.id=suivi.id_user
+                        WHERE livre.id=$id AND users.id=1");
+                        
+    $currentNumFetch = $currentNumQuery->fetch(PDO::FETCH_ASSOC);
+    $currentNum = implode("", $currentNumFetch);
+?>
+
+
 let pdfDoc = null,
-    pageNum = 1,
+    pageNum = <?php echo $currentNum; ?>,
     pageIsRendering = false,
     pageNumIsPending = null;
-
-const scale = 1.1,
+    const scale = 1.1,
     canvas = document.querySelector('#pdf-render'),
     ctx = canvas.getContext('2d');
 
@@ -103,17 +116,3 @@ document.querySelector('#next-page').addEventListener('click', showNextPage);
 
 
 </script>
-
-<?php
-$currentNumQuery = $bdd->query("SELECT suivi.progress
-                    FROM suivi
-                    INNER JOIN livre
-                    ON livre.id=suivi.id_livre
-                    INNER JOIN users
-                    ON users.id=suivi.id_user
-                    WHERE livre.id=$id AND users.id=1");
-                    
-$currentNumFetch = $currentNumQuery->fetch(PDO::FETCH_ASSOC);
-$currentNum = implode("", $currentNumFetch);
-echo $currentNum;
-?>

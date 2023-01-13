@@ -1,6 +1,8 @@
 <?php
 include 'bdd.php';
 
+
+
 $id = $_POST['id'];
 $displayData = $_POST['mydata'];
 $progressupdate =   "UPDATE suivi 
